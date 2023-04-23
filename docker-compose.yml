@@ -4,7 +4,7 @@ services:
     prisma-react:
         stdin_open: true
         build:
-            context: ../../../../../Downloads/backend
+            context: ./
             dockerfile: Dockerfile
         container_name: prisma-react
         ports:

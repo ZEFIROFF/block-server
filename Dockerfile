@@ -2,7 +2,7 @@ FROM node:lts-alpine
 
 RUN apk add --update --no-cache openssl1.1-compat
 
-WORKDIR /usr/src/app
+WORKDIR ./app
 
 COPY package*.json ./
 COPY prisma ./prisma/
@@ -11,7 +11,7 @@ COPY jsconfig.json ./
 
 RUN npm install
 
-COPY ../../../../../Downloads/backend .
+COPY . .
 
 RUN npx prisma generate
 
