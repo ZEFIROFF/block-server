@@ -14,7 +14,7 @@ export const getCardById = async (req, res) => {
     try {
         const response = await prisma.Card.findUnique({
             where: {
-                id: Number(req.params.id),
+                NFCid: Number(req.params.id),
             },
         })
         res.status(200).json(response)
@@ -22,17 +22,46 @@ export const getCardById = async (req, res) => {
         res.status(404).json({ msg: error.message })
     }
 }
+export const checkCard = async (req, res) => {
+    try {
+        const response = await prisma.Card.findUnique({
+            where: {
+                NFCid: Number(req.params.nfcId),
+            },
+        })
+        console.log(response)
+        res.status(200).json(response.isNull ? false : true)
+    } catch (error) {
+        res.status(404).json({ msg: error.message })
+    }
+}
 
 export const createCard = async (req, res) => {
-    const { name, price } = req.body
+    const { nfcId } = req.body
     try {
         const Card = await prisma.Card.create({
             data: {
-                name: name,
-                price: price,
+                NFCid: nfcId,
             },
         })
         res.status(201).json(Card)
+    } catch (error) {
+        res.status(400).json({ msg: error.message })
+    }
+}
+
+export const createCards = async (req, res) => {
+    const [{ nfcIdArr }] = req.body
+    console.log(nfcIdArr)
+    try {
+        for (const nfcIdarrElement of nfcIdArr) {
+            await prisma.Card.create({
+                data: {
+                    NFCid: nfcId,
+                },
+            })
+        }
+        res.status(201).json(nfcIdArr)
     } catch (error) {
         res.status(400).json({ msg: error.message })
     }

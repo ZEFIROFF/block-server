@@ -9,6 +9,6 @@ datasource db {
 
 model Card {
   id        Int      @id @default(autoincrement())
-  NFCid     String
+  NFCid     String   @unique
   createdAt DateTime @default(now())
 }
