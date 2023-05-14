@@ -1,8 +1,0 @@
--- CreateTable
-CREATE TABLE "Card" (
-    "id" SERIAL NOT NULL,
-    "NFCid" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-    CONSTRAINT "Card_pkey" PRIMARY KEY ("id")
-);

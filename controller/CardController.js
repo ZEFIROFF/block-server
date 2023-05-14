@@ -26,7 +26,7 @@ export const checkCard = async (req, res) => {
     try {
         const response = await prisma.Card.findUnique({
             where: {
-                NFCid: Number(req.params.nfcId),
+                NFCid: req.params.nfcId,
             },
         })
         console.log(response)
@@ -79,7 +79,7 @@ export const updateCard = async (req, res) => {
                 price: price,
             },
         })
-        res.status(200).json(Card)
+        res.status(204).json(Card)
     } catch (error) {
         res.status(400).json({ msg: error.message })
     }

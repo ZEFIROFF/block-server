@@ -15,8 +15,8 @@ app.use('/static', express.static('images'))
 app.use('/images', serveIndex('images', {icons: true}));
 app.use(CardRoute)
 app.use(AssetsRoute)
-app.listen(port, () => {
-    console.log(`Server listening on port ${port}`)
+app.listen(port, (host) => {
+    console.log(`Server listening on port ${host}:${port}`)
 })
 
 export default app
